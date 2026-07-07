@@ -3,7 +3,6 @@
 **Deployment URLs:**
 - **Web Frontend Application:** [https://pinkcycle.co.ke](https://pinkcycle.co.ke) (redirects to `/app/`)
 - **Backend API Services:** [https://pinkcycle.co.ke/api/](https://pinkcycle.co.ke/api/)
-- **Django Administration Portal:** [https://pinkcycle.co.ke/admin/](https://pinkcycle.co.ke/admin/)
 
 ---
 
@@ -256,7 +255,7 @@ For faster social sign-on, the mobile app and PWA leverage Google OAuth 2.0:
 Products can be onboarded in two ways, ensuring accessibility for different types of administrators/vendors:
 
 ### A. Django Administration Panel (`/admin/`)
-1. Authorized admins log into `https://pinkcycle.co.ke/admin/` with their superuser credentials.
+1. Authorized admins log into the admin panel (at path `/admin/`) with their superuser credentials.
 2. Under the **Shop** section, they can click **Products** -> **Add Product**.
 3. The admin inputs details like Category, Brand, Tags, Name, Slug, Price, Original Price, Stock, Condition, and uploads the Product Image.
 4. Click **Save** to insert the record.
