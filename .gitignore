@@ -1,0 +1,21 @@
+# Dependency directories
+**/node_modules/
+**/venv/
+**/.venv/
+**/bin/
+**/lib/
+**/share/
+**/pyvenv.cfg
+
+# Build directories
+**/dist/
+**/build/
+**/.expo/
+**/web-build/
+
+# Local/IDE configs
+**/.gradle/
+**/.idea/
+**/*.iml
+**/local.properties
+.DS_Store

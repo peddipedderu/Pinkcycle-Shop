@@ -1,0 +1,69 @@
+{% extends "shop/base.html" %}
+{% load i18n static %}
+
+{% block title %}{% translate "Pay your order" %}{% endblock %}
+
+{% block content %}
+  <h1>{% translate "Order summary" %}</h1>
+  <table class="cart">
+    <thead>
+      <tr>
+        <th>{% translate "Image" %}</th>
+        <th>{% translate "Product" %}</th>
+        <th>{% translate "Price" %}</th>
+        <th>{% translate "Quantity" %}</th>
+        <th>{% translate "Total" %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in order.items.all %}
+        <tr class="row{% cycle "1" "2" %}">
+          <td>
+            <img src="{% if item.product.image %}{{ item.product.image.url }}
+            {% else %}{% static "img/no_image.png" %}{% endif %}">
+          </td>
+          <td>{{ item.product.name }}</td>
+          <td class="num">${{ item.price }}</td>
+          <td class="num">{{ item.quantity }}</td>
+          <td class="num">${{ item.get_cost }}</td>
+        </tr>
+      {% endfor %}
+      {% if order.coupon %}
+        <tr class="subtotal">
+          <td>{% translate "Subtotal" %}</td>
+          <td colspan="3"></td>
+          <td class="num">
+            ${{ order.get_total_cost_before_discount|floatformat:2 }}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            {% blocktranslate with code=order.coupon.code discount=order.discount %}
+              "{{ code }}" ({{ discount }}% off)
+            {% endblocktranslate %}
+          </td>
+          <td colspan="3"></td>
+          <td class="num neg">
+            - ${{ order.get_discount|floatformat:2 }}
+          </td>
+        </tr>
+      {% endif %}
+      <tr class="total">
+        <td>{% translate "Total" %}</td>
+        <td colspan="3"></td>
+        <td class="num">
+          ${{ order.get_total_cost|floatformat:2 }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top: 20px; display: flex; gap: 15px; align-items: center;">
+    <form action="{% url "payment:process" %}" method="post" style="margin: 0;">
+      <input type="submit" value="{% translate "Pay now" %}">
+      {% csrf_token %}
+    </form>
+    <form action="{% url "payment:delete" %}" method="get" style="margin: 0;">
+      <input type="submit" value="{% translate "Cancel and Delete Order" %}" style="background-color: #fce4ec; color: #c62828; padding: 0.5em 1.5em; border: 1px solid #ffcdd2; border-radius: 4px; font-weight: bold; cursor: pointer;">
+    </form>
+  </div>
+{% endblock %}
