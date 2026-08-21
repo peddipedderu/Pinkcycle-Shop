@@ -63,6 +63,8 @@ const linking = {
   prefixes: [
     'http://localhost',
     'http://102.220.168.51',
+    'http://digitalfundi.co.ke',
+    'https://digitalfundi.co.ke',
     'http://pinkcycle.co.ke',
     'https://pinkcycle.co.ke',
     'http://pinkcycle.hopto.org',
@@ -130,7 +132,7 @@ const CustomDrawerContent = (props) => {
         onPress={() => props.navigation.navigate('Main', { screen: 'Donate' })}
       />
       <DrawerItem
-        label="About PinkCycle"
+        label="About DigitalFundi"
         onPress={() => props.navigation.navigate('Main', { screen: 'Home', params: { scrollTo: 'about' } })}
       />
       <DrawerItem

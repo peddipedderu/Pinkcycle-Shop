@@ -2,9 +2,18 @@ import axios from "axios";
 import { Platform } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Base URL set specifically to the products endpoint as requested
+const getBaseURL = () => {
+  if (process.env.EXPO_PUBLIC_API_URL) {
+    return process.env.EXPO_PUBLIC_API_URL.endsWith('/') ? process.env.EXPO_PUBLIC_API_URL : `${process.env.EXPO_PUBLIC_API_URL}/`;
+  }
+  if (Platform.OS === 'web' && typeof window !== 'undefined') {
+    return `${window.location.origin}/api/`;
+  }
+  return "https://digitalfundi.co.ke/api/";
+};
+
 const client = axios.create({
-  baseURL: "https://pinkcycle.co.ke/api/",
+  baseURL: getBaseURL(),
   timeout: 10000,
 });
 

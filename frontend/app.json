@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "PinkCycle Shop",
-    "slug": "pinkcycle",
+    "name": "DigitalFundi",
+    "slug": "digitalfundi",
     "platforms": [
       "ios",
       "android",
@@ -23,11 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "co.ke.pinkcycle.shop",
+      "bundleIdentifier": "co.ke.digitalfundi.shop",
       "buildNumber": "1.0.0"
     },
     "android": {
-      "package": "co.ke.pinkcycle.shop",
+      "package": "co.ke.digitalfundi.shop",
       "versionCode": 1
     },
     "web": {
