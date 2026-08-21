@@ -54,3 +54,7 @@ weasyprint==61.2
 webencodings==0.5.1
 zopfli==0.2.3.post1
 django-cors-headers==4.9.0
+daphne>=4.0.0
+channels>=4.0.0
+channels-redis>=4.0.0
+dj-database-url>=2.0.0

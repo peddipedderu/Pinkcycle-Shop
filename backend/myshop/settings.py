@@ -20,14 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
+SECRET_KEY = os.environ.get(
+    'SECRET_KEY',
     'django-insecure-+(@clydi&^06dxoa98e^xudb%cuw)!ju=!j-kxww^!g%jq1&v9'
 )
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1', 'yes')
 
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '.fly.dev,digitalfundi.co.ke,.digitalfundi.co.ke,localhost,127.0.0.1').split(',')
+CSRF_TRUSTED_ORIGINS = os.environ.get('CSRF_TRUSTED_ORIGINS', 'https://digitalfundi.fly.dev,https://digitalfundi.co.ke').split(',')
 
 
 # Application definition
@@ -273,11 +275,12 @@ PARLER_LANGUAGES = {
 #MEDIA_URL = 'media/'
 #MEDIA_ROOT = BASE_DIR / 'media'
 STATIC_URL = '/static/'
-STATIC_ROOT = '/var/www/venv/myshop/static_root/'
+STATIC_ROOT = os.environ.get('STATIC_ROOT', os.path.join(BASE_DIR, 'staticfiles'))
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/var/www/venv/myshop/media/'
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
+    d for d in [os.path.join(BASE_DIR, "static")]
+    if os.path.isdir(d)
 ]
    # MEDIA_ROOT = Path(BASE_DIR, '/var/www/venv/myshop/media/')
   #  MEDIA_ROOT = os.path.join(BASE_DIR, '/var/www/venv/myshop/media/')
