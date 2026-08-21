@@ -1,0 +1,13 @@
+# DigitalFundi.co.ke - Sprite Services Config
+# Place this at /home/sprite/.sprite/services.toml inside the sprite
+
+[[services]]
+name = "digitalfundi-api"
+exec = "/home/sprite/digitalfundi/venv/bin/gunicorn myshop.wsgi:application --bind 127.0.0.1:8000 --workers 3 --timeout 120"
+directory = "/home/sprite/digitalfundi/backend"
+restart = "always"
+
+[[services]]
+name = "redis"
+exec = "/usr/bin/redis-server"
+restart = "always"
